@@ -15,3 +15,9 @@ pool:
 steps:
   - bash: pip install azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge
     displayName: 'Install and Upgrade Azure CLI'
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '$(Azure_Subscription)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location uksouth --runtime "python|3.8'
