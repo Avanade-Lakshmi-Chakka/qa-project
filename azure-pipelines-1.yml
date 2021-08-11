@@ -12,12 +12,24 @@ variables:
 pool:
   name: my-agent-pool
 
-steps:
+jobs:
+- job: req
+  displayName: Requirements
+  steps:
+  - script: 
+      sudo apt install python3-venv -y
+      python3 -m venv venv
+      source venv/bin/activate
+      sudo apt install python3-pip -y
+      pip3 install -r src/requirements.txt
+      python3 src/app.py
+- job: deploy
+  steps:
   - script: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     displayName: 'Install and Upgrade Azure CLI'
   
   - task: AzureCLI@2
-    displayName: 'Upload app to azure'
+    displayName: 'Deploy app to azure'
     inputs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
@@ -32,3 +44,5 @@ steps:
   #     scriptType: 'bash'
   #     scriptLocation: 'inlineScript'
   #     inlineScript: 'az webapp config connection-string set -g lakshmichakka -n lakshmi -t mysql /--settings mysql1='Server=myServer;Database=myDB;Uid=myUser;'
+
+  
