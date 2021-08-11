@@ -24,3 +24,10 @@ steps:
       scriptLocation: 'inlineScript'
       inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
       workingDirectory: 'src/'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az webapp config connection-string set -g lakshmichakka -n lakshmi -t mysql'
