@@ -20,7 +20,7 @@ steps:
   - task: AzureCLI@2
     displayName: 'Upload app to azure'
     inputs:
-      azureSubscription: '$(Azure_Subscription)'
+      azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location uksouth --runtime "python|3.6'
