@@ -17,7 +17,6 @@ steps:
       sudo apt install python3-venv -y
       source venv/bin/activate
       sudo apt install python3-pip -y
-      pip3 install -r requirements.txt
   - bash: pip install azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge
     displayName: 'Install and Upgrade Azure CLI'
   
