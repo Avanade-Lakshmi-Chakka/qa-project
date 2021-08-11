@@ -19,15 +19,16 @@ steps:
   - task: AzureCLI@2
     displayName: 'Upload app to azure'
     inputs:
-      azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+      azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
       workingDirectory: 'src/'
 
   - task: AzureCLI@2
+    displayName: 'connection string'
     inputs:
-      azureSubscription: 'Avanade Delivery(3eba6e29-3983-495b-a539-c3c4b43fb90c)'
+      azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az webapp config connection-string set -g lakshmichakka -n lakshmi -t mysql'
