@@ -18,6 +18,7 @@ steps:
     displayName: 'Install and Upgrade Azure CLI'
   
   - task: AzureCLI@2
+    displayName: 'Upload app to azure'
     inputs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
