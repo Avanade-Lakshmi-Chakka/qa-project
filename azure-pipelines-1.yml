@@ -13,8 +13,7 @@ pool:
   name: my-agent-pool
 
 steps:
-  - script: sudo apt install python3-pip -y
-  - bash: pip install azure-cli --extra-index-url https://azurecliprod.blob.core.windows.net/edge
+  - script: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
     displayName: 'Install and Upgrade Azure CLI'
   
   - task: AzureCLI@2
