@@ -42,4 +42,4 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp config appsettings set -g lakshmichakka -n $lakshmi --settings DATABASE_URI=$(DATABASE_URI)'
+      inlineScript: 'az webapp config appsettings set -g lakshmichakka -n lakshmi --settings DATABASE_URI=$(DATABASE_URI)'
