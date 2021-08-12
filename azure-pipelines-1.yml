@@ -24,7 +24,7 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp up -n $(APP_NAME) --os-type Linux --resource-group $(RG_NAME)  --location eastus2 --runtime "python|3.6"'
+      inlineScript: 'az webapp up -n $(APP_NAME) --os-type Linux --resource-group $(RG_NAME)  --location $(LOCATION) --runtime "python|3.6"'
       workingDirectory: 'src/'
 
   - task: AzureCLI@2
