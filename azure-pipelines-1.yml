@@ -47,5 +47,11 @@ jobs:
 
 - job: apprun
   steps: 
-  - script: python3 src/app.py
+  - script: 
+      sudo apt install python3-venv -y
+      python3 -m venv venv
+      source venv/bin/activate
+      sudo apt install python3-pip -y
+      pip3 install -r src/requirements.txt
+      python3 src/app.py
     displayName: "run python app"
