@@ -12,7 +12,7 @@ variables:
 pool:
   name: my-agent-pool
 
-steps: 
+steps:
 - script:
     sudo apt install python3-venv -y
     python3 -m venv venv
@@ -22,25 +22,25 @@ steps:
     python3 src/app.py
   displayName: "run python app"
 
-jobs:
-- job: deploy
-  steps:
-  - script: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-    displayName: 'Install and Upgrade Azure CLI'
-  
-  - task: AzureCLI@2
-    displayName: 'Deploy app to azure'
-    inputs:
-      azureSubscription: '$(Azure_Subscription)'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
-      workingDirectory: 'src/'
+  jobs:
+  - job: deploy
+    steps:
+    - script: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+      displayName: 'Install and Upgrade Azure CLI'
+    
+    - task: AzureCLI@2
+      displayName: 'Deploy app to azure'
+      inputs:
+        azureSubscription: '$(Azure_Subscription)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
+        workingDirectory: 'src/'
 
-  - task: AzureCLI@2
-    displayName: 'connection string'
-    inputs:
-      azureSubscription: '$(Azure_Subscription)'
-      scriptType: 'bash'
-      scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp config appsettings set -g lakshmichakka -n lakshmi --settings DATABASE_URI=$(DATABASE_URI)'
+    - task: AzureCLI@2
+      displayName: 'connection string'
+      inputs:
+        azureSubscription: '$(Azure_Subscription)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az webapp config appsettings set -g lakshmichakka -n lakshmi --settings DATABASE_URI=$(DATABASE_URI)'
