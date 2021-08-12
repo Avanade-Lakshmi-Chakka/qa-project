@@ -18,10 +18,9 @@ jobs:
 #   steps:
 #   - script: 
 #       sudo apt install python3-venv -y
-#       python3 -m venv venv
 #       source venv/bin/activate
 #       sudo apt install python3-pip -y
-#       pip3 install -r src/requirements.txt
+##       pip3 install -r src/requirements.txt
 #       python3 src/app.py
 - job: deploy
   steps:
@@ -37,12 +36,12 @@ jobs:
       inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
       workingDirectory: 'src/'
 
-  # - task: AzureCLI@2
-  #   displayName: 'connection string'
-  #   inputs:
-  #     azureSubscription: '$(Azure_Subscription)'
-  #     scriptType: 'bash'
-  #     scriptLocation: 'inlineScript'
-  #     inlineScript: 'az webapp config connection-string set -g lakshmichakka -n lakshmi -t mysql /--settings mysql1='Server=myServer;Database=myDB;Uid=myUser;'
+  - task: AzureCLI@2
+    displayName: 'connection string'
+    inputs:
+      azureSubscription: '$(Azure_Subscription)'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az webapp config connection-string set -g lakshmichakka -n lakshmi -t mysql'
 
   
