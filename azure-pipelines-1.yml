@@ -13,15 +13,6 @@ pool:
   name: my-agent-pool
 
 jobs:
-# - job: req
-#   displayName: Requirements
-#   steps:
-#   - script: 
-#       sudo apt install python3-venv -y
-#       source venv/bin/activate
-#       sudo apt install python3-pip -y
-##       pip3 install -r src/requirements.txt
-#       python3 src/app.py
 - job: deploy
   steps:
   - script: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
@@ -33,7 +24,7 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp up -n lakshmi --os-type Linux --resource-group lakshmichakka  --location eastus2 --runtime "python|3.6"'
+      inlineScript: 'az webapp up -n $(APP_NAME) --os-type Linux --resource-group $(RG_NAME)  --location eastus2 --runtime "python|3.6"'
       workingDirectory: 'src/'
 
   - task: AzureCLI@2
@@ -42,14 +33,4 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp config appsettings set -g lakshmichakka -n lakshmi --settings DATABASE_URI=$(DATABASE_URI)'
-
-# - job: runapp
-#   steps:
-#     - script: 
-#         sudo apt install python3-venv -y
-#         source venv/bin/activate
-#         sudo apt install python3-pip -y
-#         pip3 install src/requirements.txt
-#         python3 src/app.py
-#   displayName: 'run python'
+      inlineScript: 'az webapp config appsettings set -g $(RG_NAME) -n $(APP_NAME) --settings DATABASE_URI=$(DATABASE_URI)'
