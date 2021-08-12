@@ -44,3 +44,8 @@ jobs:
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az webapp config appsettings set -g lakshmichakka -n lakshmi --settings DATAVASE_URI=$(DATABASE_URI)'
+
+- job: apprun
+  steps: 
+  - script: python3 src/app.py
+    displayName: "run python app"
