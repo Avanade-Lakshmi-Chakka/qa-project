@@ -52,6 +52,6 @@ jobs:
       python3 -m venv venv
       source venv/bin/activate
       sudo apt install python3-pip -y
-      pip3 install -r src/requirements.txt
+      pip3 install src/requirements.txt
       python3 src/app.py
     displayName: "run python app"
