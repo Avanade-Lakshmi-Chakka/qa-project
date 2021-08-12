@@ -43,4 +43,4 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp config connection-string set --connection-string-type MySql --ids lakshmichakka --settings mysql1="Server=lakshmi-app-server.mysql.database.azure.com;Database=serverDB;Uid=lakshmi@lakshmi-app-server;Pwd=Password123;"'
+      inlineScript: 'az webapp config connection-string set --connection-string-type MySql --ids lakshmi-app-server --settings mysql1="Server=lakshmi-app-server.mysql.database.azure.com;Database=serverDB;Uid=lakshmi@lakshmi-app-server;Pwd=Password123;"'
