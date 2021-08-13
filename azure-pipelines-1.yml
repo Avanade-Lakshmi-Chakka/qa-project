@@ -33,4 +33,4 @@ jobs:
       azureSubscription: '$(Azure_Subscription)'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
-      inlineScript: 'az webapp config appsettings set -g $(RG_NAME) -n $(APP_NAME) --settings DATABASE_URI=$(DATABASE_URI)'
+      inlineScript: 'az webapp config appsettings set -g $(RG_NAME) -n $(APP_NAME) --settings DATABASE_URI=mysql://lakshmi@lakshmi-app-server:Password123@lakshmi-app-server.mysql.database.azure.com:3306/serverDB'
